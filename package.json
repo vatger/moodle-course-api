@@ -1,0 +1,27 @@
+{
+    "name": "moodle-course-api",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start:dev": "tsc && node ./index.js",
+        "prettier:check": "npx prettier --check **/*.{ts,js}",
+        "prettier:write": "npx prettier --write .",
+        "build": "tsc"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/vatger/moodle-course-api"
+    },
+    "keywords": [],
+    "author": "VATSIM Germany <webmaster@vatsim-germany.org>",
+    "license": "GPL3",
+    "dependencies": {
+        "@types/express": "^4.17.14",
+        "@types/sequelize": "^4.28.14",
+        "dotenv": "^16.0.3",
+        "express": "^4.18.2",
+        "mysql2": "^2.3.3",
+        "sequelize": "^6.25.6"
+    }
+}
