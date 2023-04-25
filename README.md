@@ -7,7 +7,7 @@ determine a member's progress within a specific course.
 
 ## API Interface
 
-| Method |        Path         | Parameters                             | Response                                                     | Description                                                                                                                              |
-|:------:|:-------------------:|:---------------------------------------|:-------------------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------|
-| `GET`  | `/course_completed` | `{course_id: number, user_id: number}` | `{course_name: string, completed: bool, completed_at: Date}` | Returns the provided response for the provided parameters. Returns a `400` HTTP Error in the event of missing parameters.                |
-| `GET`  |  `/quiz_completed`  | `{module_id: number, user_id: number}` | Result of the `SELECT` statement                             | Returns the result of the `SELECT` statement for the provided parameters. Returns a `400` HTTP Error in the event of missing parameters. |
+| Method |        Path         | Parameters                             | Response                                                     |
+|:------:|:-------------------:|:---------------------------------------|:-------------------------------------------------------------|
+| `GET`  | `/course_completed` | `{course_id: number, user_id: number}` | `{course_name: string, completed: bool, completed_at: Date}` |
+| `GET`  |  `/quiz_completed`  | `{module_id: number, user_id: number}` | Result of the `SELECT` statement                             |
