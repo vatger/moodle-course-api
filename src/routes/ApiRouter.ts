@@ -12,7 +12,7 @@ apiRouter.get("/course_completed", async (req, res) => {
     const user_id = req.query.user_id;
 
     if (course_id == null || user_id == null) {
-        res.status(404).send({ error: "Missing required parameters" });
+        res.status(400).send({ error: "Missing required parameters" });
         return;
     }
 
@@ -45,7 +45,7 @@ apiRouter.get("/quiz_completed", async (req, res) => {
     const user_id = req.query.user_id;
 
     if (module_id == null || user_id == null) {
-        res.status(404).send({ error: "Missing required parameters" });
+        res.status(400).send({ error: "Missing required parameters" });
         return;
     }
 

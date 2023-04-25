@@ -3,6 +3,7 @@ import { initializeApplication } from "./src/core/StartupRoutine";
 import { Config } from "./src/core/Config";
 import Logger, { LogLevels } from "./src/utility/Logger";
 import { apiRouter } from "./src/routes/ApiRouter";
+import bodyParser from "body-parser";
 
 const application = express();
 
@@ -11,6 +12,7 @@ initializeApplication()
         application.listen(Config.APP_PORT, () => {
             Logger.log(LogLevels.LOG_SUCCESS, `Server is running on http://localhost:${Config.APP_PORT}`, true);
         });
+        application.use(bodyParser.json());
 
         application.use(apiRouter);
     })
