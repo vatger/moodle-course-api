@@ -3,19 +3,18 @@
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
+    "author": "VATSIM Germany <webmaster@vatger.de>",
+    "license": "GPL3",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/vatger/moodle-course-api"
+    },
     "scripts": {
         "start:dev": "tsc && node ./index.js",
         "prettier:check": "npx prettier --check **/*.{ts,js}",
         "prettier:write": "npx prettier --write .",
         "build": "tsc"
     },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/vatger/moodle-course-api"
-    },
-    "keywords": [],
-    "author": "VATSIM Germany <webmaster@vatsim-germany.org>",
-    "license": "GPL3",
     "dependencies": {
         "@types/body-parser": "^1.19.2",
         "@types/express": "^4.17.14",
