@@ -7,6 +7,8 @@ import bodyParser from "body-parser";
 
 const application = express();
 
+console.log("TEST");
+
 initializeApplication()
     .then(() => {
         application.listen(Config.APP_PORT, () => {
