@@ -82,7 +82,7 @@ apiRouter.get("/module_completed", async (req, res) => {
     }
 
     const sql =
-        "SELECT cmc.completionstate " +
+        "SELECT cmc.completionstate AS completionstate " +
         "FROM mdl_course_modules_completion AS cmc " +
         "JOIN mdl_course_modules AS cm ON cmc.coursemoduleid = cm.id " +
         "JOIN mdl_user as u ON cmc.userid = u.id " +
