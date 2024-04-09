@@ -72,4 +72,32 @@ apiRouter.get("/quiz_completed", async (req, res) => {
     res.send(result);
 });
 
+apiRouter.get("/module_completed", async (req, res) => {
+    const module_id = req.query.module_id;
+    const user_id = req.query.user_id;
+
+    if (module_id == null || user_id == null) {
+        res.status(400).send({ error: "Missing required parameters" });
+        return;
+    }
+
+    const sql =
+        "SELECT cmc.completionstate " +
+        "FROM mdl_course_modules_completion AS cmc " +
+        "JOIN mdl_course_modules AS cm ON cmc.coursemoduleid = cm.id " +
+        "JOIN mdl_user as u ON cmc.userid = u.id " +
+        "WHERE cm.module = 17 " +
+        "AND u.username LIKE ? " +
+        "AND cm.id = ?" +
+        "LIMIT 1" +
+        ";";
+
+    const result: { completionstate: number }[] = await sequelizeHost.query(sql, {
+        type: QueryTypes.SELECT,
+        replacements: [user_id, module_id],
+    });
+
+    res.send(result);
+});
+
 export { apiRouter };
