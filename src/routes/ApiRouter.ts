@@ -100,4 +100,52 @@ apiRouter.get("/module_completed", async (req, res) => {
     res.send(result);
 });
 
+apiRouter.get("/delete_attempts_and_override", async (req, res) => {
+    const user_id = req.query.user_id;
+    const quiz_id = req.query.quiz_id;
+
+    if (user_id == null || quiz_id == null) {
+        res.status(400).send({ error: "Missing required parameters" });
+        return;
+    }
+
+    const sqlOverrides: string =
+        "DELETE qo " +
+        "FROM mdl_quiz_overrides AS qo " +
+        "JOIN mdl_user AS u ON qo.userid = u.id " +
+        "WHERE qo.quiz = ? " +
+        "AND u.username = ?;";
+
+    const sqlAttempts: string =
+        "DELETE qa " +
+        "FROM mdl_quiz_attempts AS qa " +
+        "JOIN mdl_user AS u ON qa.userid = u.id " +
+        "WHERE qa.quiz = ? " +
+        "AND u.username = ?;";
+
+    try {
+        // Execute the first DELETE query
+        const [resultOverrides] = await sequelizeHost.query(sqlOverrides, {
+            type: QueryTypes.BULKDELETE,
+            replacements: [quiz_id, user_id],
+        });
+
+        // Execute the second DELETE query
+        const [resultAttempts] = await sequelizeHost.query(sqlAttempts, {
+            type: QueryTypes.BULKDELETE,
+            replacements: [quiz_id, user_id],
+        });
+
+        // Send the response with details of both delete operations
+        res.send({
+            message: "Delete operations completed",
+            overridesDeleted: resultOverrides,
+            attemptsDeleted: resultAttempts,
+        });
+    } catch (error) {
+        // Handle errors
+        res.status(500).send({ error: "Internal Server Error", details: error.message });
+    }
+});
+
 export { apiRouter };
