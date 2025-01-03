@@ -7,7 +7,7 @@ const apiRouter = Router();
 
 apiRouter.use(authorizationTokenMiddleware);
 
-apiRouter.get("/course_completed", async (req, res) => {
+apiRouter.get("/course_completed", async (req:any, res:any) => {
     const course_id = req.query.course_id;
     const user_id = req.query.user_id;
 
@@ -40,7 +40,7 @@ apiRouter.get("/course_completed", async (req, res) => {
     });
 });
 
-apiRouter.get("/quiz_completed", async (req, res) => {
+apiRouter.get("/quiz_completed", async (req:any, res:any) => {
     const module_id = req.query.module_id;
     const user_id = req.query.user_id;
 
@@ -125,13 +125,13 @@ apiRouter.get("/delete_attempts_and_override", async (req, res) => {
 
     try {
         // Execute the first DELETE query
-        const [resultOverrides] = await sequelizeHost.query(sqlOverrides, {
+        const resultOverrides = await sequelizeHost.query(sqlOverrides, {
             type: QueryTypes.BULKDELETE,
             replacements: [quiz_id, user_id],
         });
 
         // Execute the second DELETE query
-        const [resultAttempts] = await sequelizeHost.query(sqlAttempts, {
+        const resultAttempts = await sequelizeHost.query(sqlAttempts, {
             type: QueryTypes.BULKDELETE,
             replacements: [quiz_id, user_id],
         });
@@ -142,7 +142,7 @@ apiRouter.get("/delete_attempts_and_override", async (req, res) => {
             overridesDeleted: resultOverrides,
             attemptsDeleted: resultAttempts,
         });
-    } catch (error) {
+    } catch (error:any) {
         // Handle errors
         res.status(500).send({ error: "Internal Server Error", details: error.message });
     }

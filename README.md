@@ -7,7 +7,8 @@ determine a member's progress within a specific course.
 
 ## API Interface
 
-| Method |        Path         | Parameters                             | Response                                                     |
-|:------:|:-------------------:|:---------------------------------------|:-------------------------------------------------------------|
-| `GET`  | `/course_completed` | `{course_id: number, user_id: number}` | `{course_name: string, completed: bool, completed_at: Date}` |
-| `GET`  |  `/quiz_completed`  | `{module_id: number, user_id: number}` | Result of the `SELECT` statement                             |
+| Method |              Path               | Parameters                             | Response                                                               |
+|:------:|:-------------------------------:|:---------------------------------------|:-----------------------------------------------------------------------|
+| `GET`  |       `/course_completed`       | `{course_id: number, user_id: number}` | `{course_name: string, completed: bool, completed_at: Date}`           |
+| `GET`  |        `/quiz_completed`        | `{module_id: number, user_id: number}` | Result of the `SELECT` statement                                       |
+| `GET`  | `/delete_attempts_and_override` | `{quiz_id: number, user_id: number}`   | `{message: string, overridesDeleted: number, attemptsDeleted: number}` |
