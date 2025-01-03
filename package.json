@@ -11,6 +11,7 @@
     },
     "scripts": {
         "start:dev": "tsc && node ./index.js",
+        "start": "tsc && node ./index.js",
         "prettier:check": "npx prettier --check **/*.{ts,js}",
         "prettier:write": "npx prettier --write .",
         "build": "tsc"
